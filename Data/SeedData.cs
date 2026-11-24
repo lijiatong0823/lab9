@@ -1,0 +1,57 @@
+using Lab9.Models;
+
+namespace Lab9.Data;
+
+public static class SeedData
+{
+    public static void Initialize(Lab9Context db)
+    {
+        if (!db.Campuses.Any())
+        {
+            db.Campuses.AddRange(
+                new UniversityCampus
+                {
+                    Name = "Auckland",
+                    Students = new List<Student>
+                    {
+                        new() { Name = "Alex Chen", Address = "12 Sample Road, Auckland" },
+                        new() { Name = "Mia Lee", Address = "35 Example Lane, Auckland" },
+                        new() { Name = "Leah Ng", Address = "15 Sample Road, Auckland" },
+                        new() { Name = "Noah Patel", Address = "18 Sample Road, Auckland" },
+                        new() { Name = "Zoe Wang", Address = "25 Sample Road, Auckland" }
+                    }
+                },
+                new UniversityCampus
+                {
+                    Name = "Manawatu",
+                    Students = new List<Student>
+                    {
+                        new() { Name = "Sam Wilson", Address = "8 Demo Street, Palmerston North" },
+                        new() { Name = "Alex Smith", Address = "22 Sample Road, Palmerston North" }
+                    }
+                },
+                new UniversityCampus
+                {
+                    Name = "Wellington",
+                    Students = new List<Student>
+                    {
+                        new() { Name = "Jordan Taylor", Address = "24 Demo Avenue, Wellington" },
+                        new() { Name = "Mia Brown", Address = "10 Example Lane, Wellington" }
+                    }
+                });
+        }
+        if (!db.Categories.Any())
+        {
+            db.Categories.Add(new Category
+            {
+                Name = "Stationery",
+                Products = new List<Product>
+                {
+                    new() { Name = "Notebook", Price = 4.50m, Description = "A5 ruled notebook" },
+                    new() { Name = "Pen", Price = 2.00m, Description = "Blue ink pen" }
+                }
+            });
+        }
+        db.SaveChanges();
+    }
+}
